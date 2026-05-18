@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { creatorApi } from "../../utils/CreatorsAPI";
-
 import "./EditCreator.css";
 
 function EditCreator() {
@@ -23,7 +22,6 @@ function EditCreator() {
       try {
         const response = await creatorApi.getCreatorById(id);
         const creator = response.data || response;
-
         setFormData({
           name: creator.name || "",
           imageURL: creator.imageURL || "",
@@ -31,7 +29,7 @@ function EditCreator() {
           url: creator.url || ""
         });
       } catch (err) {
-        console.error("Failed to load creator:", err);
+        console.error(err);
         alert("Failed to load creator data");
       } finally {
         setLoading(false);
@@ -49,11 +47,30 @@ function EditCreator() {
     e.preventDefault();
     try {
       await creatorApi.updateCreator(id, formData);
-      alert("Creator updated successfully!");
+      alert("✅ Creator updated successfully!");
       navigate(`/creator/${id}`);
     } catch (err) {
-      console.error(err);
       alert("Failed to update creator");
+      console.error(err);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (
+      !window.confirm(
+        "🗑️ Are you sure you want to delete this creator? This action cannot be undone."
+      )
+    ) {
+      return;
+    }
+
+    try {
+      await creatorApi.deleteCreator(id);
+      alert("🗑️ Creator deleted successfully!");
+      navigate("/");
+    } catch (err) {
+      alert("Failed to delete creator");
+      console.error(err);
     }
   };
 
@@ -113,7 +130,7 @@ function EditCreator() {
 
           <div className="social-input">
             <div className="social-label">
-              <span>▶️</span> YouTube
+              <span>▶️</span> YouTube / Main Link
             </div>
             <input
               type="url"
@@ -122,7 +139,6 @@ function EditCreator() {
               onChange={handleChange}
               placeholder="https://youtube.com/@username"
             />
-            <small>The creator's YouTube handle (without the @)</small>
           </div>
         </div>
 
@@ -136,6 +152,9 @@ function EditCreator() {
             onClick={() => navigate(-1)}
           >
             Cancel
+          </button>
+          <button type="button" className="delete-btn" onClick={handleDelete}>
+            🗑️ Delete Creator
           </button>
         </div>
       </form>

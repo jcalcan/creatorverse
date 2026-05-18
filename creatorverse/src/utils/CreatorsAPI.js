@@ -5,7 +5,11 @@ export class Creators_API {
 
   _request(endpoint, options = {}) {
     const finalOptions = {
-      ...options
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        ...options.headers
+      }
     };
 
     return fetch(endpoint, finalOptions).then(this._checkResponse);
@@ -30,9 +34,10 @@ export class Creators_API {
   }
 
   addCreator(creatorData) {
+    const { id, ...safeData } = creatorData;
     return this._request(`${this._baseUrl}/creator-cards`, {
       method: "POST",
-      body: JSON.stringify(creatorData)
+      body: JSON.stringify(safeData)
     });
   }
   updateCreator(id, creatorData) {

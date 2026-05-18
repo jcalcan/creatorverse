@@ -13,7 +13,7 @@ function CreatorDetail() {
   useEffect(() => {
     const fetchCreator = async () => {
       try {
-        const response = await creatorAPI.getCreatorById(id);
+        const response = await creatorApi.getCreatorById(id);
         setCreator(response.data || response);
       } catch (err) {
         setError("Failed to load creator");

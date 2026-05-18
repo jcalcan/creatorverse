@@ -44,23 +44,43 @@ const getCreatorById = async (req, res, next) => {
 
 const addCreator = async (req, res, next) => {
   try {
+    console.log("📦 Received body:", req.body);
+
+    // Explicitly exclude 'id' to prevent duplicate key errors
     const { name, url, description, imageURL } = req.body;
+
+    if (!name || !description) {
+      return res.status(400).json({
+        message: "Name and description are required"
+      });
+    }
 
     const { data, error } = await supabase
       .from("creators")
-      .insert([{ name, url, description, imageURL }])
+      .insert([
+        {
+          name,
+          url,
+          description,
+          imageURL
+        }
+      ])
       .select()
       .single();
 
     if (error) throw error;
 
+    console.log("✅ Creator inserted successfully:", data);
+
     return res.status(201).json({
-      data: data,
+      data,
       message: "Creator added successfully"
     });
   } catch (err) {
-    console.error(err);
-    return next(err);
+    console.error("❌ Add Creator Error:", err);
+    return res.status(500).json({
+      message: err.message
+    });
   }
 };
 

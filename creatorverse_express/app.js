@@ -10,6 +10,7 @@ app.use(
     credentials: true
   })
 );
+app.use(express.json());
 app.use("/api", creatorCardsRoute);
 
 app.get("/", (req, res) => {
