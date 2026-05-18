@@ -1,0 +1,67 @@
+.creator-cards {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+.creator-cards__heading {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 46px;
+  color: #1a1b22;
+  margin: 80px 104px 64px;
+  text-align: left;
+}
+.creator-cards__list {
+  list-style-type: none;
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 104px;
+  padding: 0;
+  justify-content: center;
+}
+
+.creator-cards__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.creator-cards__add-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.creator-cards__add-btn:hover {
+  background-color: #0056b3;
+}
+
+.no-creators {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin-top: 40px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+  margin: 40px 0;
+}

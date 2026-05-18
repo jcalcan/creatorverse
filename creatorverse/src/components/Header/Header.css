@@ -1,0 +1,50 @@
+.header {
+  background-image: url(./src/assets/heroImage.png);
+  background-position: 50%;
+  background-size: cover;
+  border-bottom: 2px solid #424a59;
+  height: 600px;
+  width: 100%;
+  padding: 144px 0 0;
+  text-align: center;
+}
+
+.header__title {
+  font-family: "Sono", sans-serif;
+  font-weight: 800;
+  color: white;
+  font-size: 87.84px;
+  margin: 0 0 57px;
+  text-align: center;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: center;
+  padding: 20px 104px;
+}
+
+.header__nav_btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+}
+.header__nav_btn {
+  cursor: pointer;
+  width: 20em;
+  display: flex;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  height: 1em;
+  justify-content: center;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  padding: 2em;
+  background-color: #5185b4;
+  color: white;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
